@@ -3,29 +3,24 @@ package com.otv.managed.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
- 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
- 
+
 import com.otv.model.User;
 import com.otv.user.service.UserService;
  
-//@ManagedBean(name="userMB")
-//@RequestScoped
-@Component("userMB")
+
+@Component(value="userMB")
+@Scope(value="request")
 public class UserManagedBean implements Serializable {
  
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
  
-    //Spring User Service is injected...
-//    @ManagedProperty(value="#{UserServiceImpl}")
     @Autowired UserService userService;
  
     private List<User> userList;
@@ -57,7 +52,7 @@ public class UserManagedBean implements Serializable {
  
     public List<User> getUserList() {
         userList = new ArrayList<User>();
-        userList.addAll(getUserService().getAllUsers());
+        userList=userService.getAllUsers();
         return userList;
     }
  

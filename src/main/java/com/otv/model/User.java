@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import com.otv.domain.BaseEntity;
  
 @Entity
-@Table(name="USER")
+@Table(name="user")
 public class User extends BaseEntity<Integer>{
  
 	/**
@@ -21,7 +21,7 @@ public class User extends BaseEntity<Integer>{
     private String surname;
  
     @Id
-    @Column(name="ID", unique = true, nullable = false)
+    @Column(name="id", unique = true, nullable = false)
     public Integer getId() {
 		return id;
 	}
@@ -30,7 +30,7 @@ public class User extends BaseEntity<Integer>{
 		this.id = id;
 	}
 
-    @Column(name="NAME", unique = true, nullable = false)
+    @Column(name="name", unique = true, nullable = false)
     public String getName() {
         return name;
     }
@@ -39,21 +39,19 @@ public class User extends BaseEntity<Integer>{
         this.name = name;
     }
  
-    @Column(name="SURNAME", unique = true, nullable = false)
+    @Column(name="surname", unique = true, nullable = false)
     public String getSurname() {
         return surname;
     }
  
     public void setSurname(String surname) {
         this.surname = surname;
-    }  
- 
-    @Override
-    public String toString() {
-        StringBuffer strBuff = new StringBuffer();
-        strBuff.append("id : ").append(getId());
-        strBuff.append(", name : ").append(getName());
-        strBuff.append(", surname : ").append(getSurname());
-        return strBuff.toString();
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", surname=" + surname
+				+ "]";
+	}  
+ 
 }
