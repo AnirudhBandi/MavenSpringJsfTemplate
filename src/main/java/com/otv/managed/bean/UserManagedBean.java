@@ -20,6 +20,7 @@ public class UserManagedBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
+    private static final String VIEW = "view";
  
     @Autowired UserService userService;
  
@@ -35,13 +36,17 @@ public class UserManagedBean implements Serializable {
             user.setId(getId());
             user.setName(getName());
             user.setSurname(getSurname());
-            getUserService().addUser(user);
+            userService.addUser(user);
             return SUCCESS;
         } catch (DataAccessException e) {
             e.printStackTrace();
         }  
  
         return ERROR;
+    }
+    
+    public String listUsers() {
+            return SUCCESS;
     }
  
     public void reset() {
@@ -54,14 +59,6 @@ public class UserManagedBean implements Serializable {
         userList = new ArrayList<User>();
         userList=userService.getAllUsers();
         return userList;
-    }
- 
-    public UserService getUserService() {
-        return userService;
-    }
- 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
  
     public void setUserList(List<User> userList) {
